@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" 
+     xmlns:VSExtension="http://schemas.microsoft.com/wix/VSExtension">
+  
+	<Product Id           = "e9e37169-58db-45fe-ba50-61e34ca7a4a4" 
+           Name         = "IXOS File Name Extensions" 
+           Language     = "1033" 
+           Version      = "1.0.0.0" 
+           Manufacturer = "Maximilian Hänel" 
+           Codepage     = "1252"
+           UpgradeCode  = "025ee4c3-f9a9-46fb-bb83-4f82b4f04835">
+    
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="IXOS File Name Extensions" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+
+    <Icon Id="Setup.ico" SourceFile="Icons\Setup.ico"/>
+    <Property Id="ARPPRODUCTICON"  Value="Setup.ico" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/IInspectable" />
+    
+    <Condition Message="This product requires Visual Studio 2015 or 2017.">VS2015DEVENV OR VS2017DEVENV</Condition>
+   
+    <Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="IXOS File Name Extensions" />
+			</Directory>
+		</Directory>
+    
+    <PropertyRef Id="VS2015DEVENV"/>
+    <PropertyRef Id="VS2017DEVENV"/>
+
+    <CustomAction Id="VS2015DevEnv" Property="DEVENV" Value="[VS2015DEVENV]" Execute="immediate" />
+    <CustomAction Id="VS2015ProgId" Property="DEVPROGID" Value="VisualStudio.14.0" Execute="immediate" />
+    
+    <CustomAction Id="VS2017DevEnv" Property="DEVENV" Value="[VS2017DEVENV]" Execute="immediate" />
+    <CustomAction Id="VS2017ProgId" Property="DEVPROGID" Value="VisualStudio.15.0" Execute="immediate" />
+    
+    <InstallExecuteSequence>
+      <Custom Action="VS2015DevEnv" After="AppSearch">NOT VS2017DEVENV</Custom>
+      <Custom Action="VS2015ProgId" After="AppSearch">NOT VS2017DEVENV</Custom>
+      
+      <Custom Action="VS2017DevEnv" After="AppSearch">VS2017DEVENV</Custom>
+      <Custom Action="VS2017ProgId" After="AppSearch">VS2017DEVENV</Custom>
+    </InstallExecuteSequence>
+      
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+      <!-- Nav File-->
+      <Component Id="FileTypes.Nav" Guid="de12dfef-10ee-497d-b89b-4a8567c01bf4">
+        <File Id="Nav.ico" Name="WorkflowDefinition.ico" Source="Icons\WorkflowDefinition.ico" />
+
+        <RegistryKey Id="Reg.Extn.Nav" Root="HKCR" Key=".nav" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.Extn.Nav.Value" Value="VisualStudio.nav" Type="string" />
+          <RegistryValue Id="Reg.Extn.Nav.ContentType" Name="Content Type"  Value="text/plain" Type="string" />
+        </RegistryKey>
+                         
+        <RegistryKey Id="Reg.Class.Nav" Root="HKCR" Key="VisualStudio.nav" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.Class.Nav.Value" Value="Workflow Definition" Type="string" />
+          <RegistryValue Id="Reg.Class.Nav.Icon" Key="DefaultIcon" Value="[#Nav.ico]" Type="string" />
+          <RegistryKey Id="Reg.Class.Nav.Shell" Key="Shell" ForceCreateOnInstall="yes">
+            <RegistryKey Id="Reg.Class.Nav.Shell.Open" Key="Open" ForceCreateOnInstall="yes">
+              <RegistryKey Id="Reg.Class.Nav.Shell.Open.Command" Key="Command" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.Class.Nav.Shell.Open.Command.Value" Value="[DEVENV] /dde &quot;%1&quot;" Type="string" />
+              </RegistryKey>
+              <RegistryKey Id="Reg.Class.Nav.Shell.Open.ddeexec" Key="ddeexec" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.Class.Nav.Shell.Open.ddeexec.Value" Value="Open(&quot;%1&quot;)" Type="string" />
+                <RegistryKey Id="Reg.Class.Nav.Shell.Open.ddeexec.Application" Key="Application" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.Class.Nav.Shell.Open.ddeexec.Application.Value" Value="[DEVPROGID]" Type="string" />
+                </RegistryKey>
+                <RegistryKey Id="Reg.Class.Nav.Shell.Open.ddeexec.Topic" Key="Topic" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.Class.Nav.Shell.Open.ddeexec.Topic.Value" Value="system" Type="string" />
+                </RegistryKey>
+              </RegistryKey>
+            </RegistryKey>
+            
+          </RegistryKey>
+          
+        </RegistryKey>
+      
+      </Component>
+
+      <!-- Pos File-->
+      <Component Id="FileTypes.Pos" Guid="3024dffc-731e-4721-8ede-749e9d05b48f">
+        <File Id="PosTemplate.ico" Name="PosTemplate.ico" Source="Icons\PosTemplate.ico" />
+
+        <RegistryKey Id="Reg.Extn.Pos" Root="HKCR" Key=".pos" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.Extn.Pos.Value" Value="VisualStudio.pos" Type="string" />
+          <RegistryValue Id="Reg.Extn.Pos.ContentType" Name="Content Type"  Value="text/plain" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Id="Reg.ClassPos" Root="HKCR" Key="VisualStudio.pos" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.ClassPos.Value" Value="POS Template" Type="string" />
+          <RegistryValue Id="Reg.ClassPos.Icon" Key="DefaultIcon" Value="[#PosTemplate.ico]" Type="string" />
+          <RegistryKey Id="Reg.ClassPos.Shell" Key="Shell" ForceCreateOnInstall="yes">
+            <RegistryKey Id="Reg.ClassPos.Shell.Open" Key="Open" ForceCreateOnInstall="yes">
+              <RegistryKey Id="Reg.ClassPos.Shell.Open.Command" Key="Command" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.ClassPos.Shell.Open.Command.Value" Value="[DEVENV] /dde &quot;%1&quot;" Type="string" />
+              </RegistryKey>
+              <RegistryKey Id="Reg.ClassPos.Shell.Open.ddeexec" Key="ddeexec" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.ClassPos.Shell.Open.ddeexec.Value" Value="Open(&quot;%1&quot;)" Type="string" />
+                <RegistryKey Id="Reg.ClassPos.Shell.Open.ddeexec.Application" Key="Application" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.ClassPos.Shell.Open.ddeexec.Application.Value" Value="[DEVPROGID]" Type="string" />
+                </RegistryKey>
+                <RegistryKey Id="Reg.ClassPos.Shell.Open.ddeexec.Topic" Key="Topic" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.ClassPos.Shell.Open.ddeexec.Topic.Value" Value="system" Type="string" />
+                </RegistryKey>
+              </RegistryKey>
+            </RegistryKey>
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+
+      <!-- Gd File-->
+      <Component Id="FileTypes.Gd" Guid="c9d635de-4d02-4328-9099-019fa7904835">
+        <File Id="GuiDefinition.ico" Name="GuiDefinition.ico" Source="Icons\GuiDefinition.ico" />
+
+        <RegistryKey Id="Reg.Extn.Gd" Root="HKCR" Key=".gd" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.Extn.Gd.Value" Value="VisualStudio.gd" Type="string" />
+          <RegistryValue Id="Reg.Extn.Gd.ContentType" Name="Content Type"  Value="text/plain" Type="string" />
+        </RegistryKey>
+        
+        <RegistryKey Id="Reg.ClassGd" Root="HKCR" Key="VisualStudio.gd" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.ClassGd.Value" Value="GUI Definition" Type="string" />
+          <RegistryValue Id="Reg.ClassGd.Icon" Key="DefaultIcon" Value="[#GuiDefinition.ico]" Type="string" />
+          <RegistryKey Id="Reg.ClassGd.Shell" Key="Shell" ForceCreateOnInstall="yes">
+            <RegistryKey Id="Reg.ClassGd.Shell.Open" Key="Open" ForceCreateOnInstall="yes">
+              <RegistryKey Id="Reg.ClassGd.Shell.Open.Command" Key="Command" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.ClassGd.Shell.Open.Command.Value" Value="[DEVENV] /dde &quot;%1&quot;" Type="string" />
+              </RegistryKey>
+              <RegistryKey Id="Reg.ClassGd.Shell.Open.ddeexec" Key="ddeexec" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.ClassGd.Shell.Open.ddeexec.Value" Value="Open(&quot;%1&quot;)" Type="string" />
+                <RegistryKey Id="Reg.ClassGd.Shell.Open.ddeexec.Application" Key="Application" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.ClassGd.Shell.Open.ddeexec.Application.Value" Value="[DEVPROGID]" Type="string" />
+                </RegistryKey>
+                <RegistryKey Id="Reg.ClassGd.Shell.Open.ddeexec.Topic" Key="Topic" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.ClassGd.Shell.Open.ddeexec.Topic.Value" Value="system" Type="string" />
+                </RegistryKey>
+              </RegistryKey>
+            </RegistryKey>
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+      
+		</ComponentGroup>
+	</Fragment>
+</Wix>
