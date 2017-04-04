@@ -1,14 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" 
-     xmlns:VSExtension="http://schemas.microsoft.com/wix/VSExtension">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:VSExtension="http://schemas.microsoft.com/wix/VSExtension">
   
-	<Product Id           = "e9e37169-58db-45fe-ba50-61e34ca7a4a4" 
-           Name         = "IXOS File Name Extensions" 
-           Language     = "1033" 
-           Version      = "1.0.0.0" 
-           Manufacturer = "Maximilian Hänel" 
-           Codepage     = "1252"
-           UpgradeCode  = "025ee4c3-f9a9-46fb-bb83-4f82b4f04835">
+	<Product Id="db8281c4-cf15-469a-891f-fbb8a793d5e6" Name="IXOS File Name Extensions" Language="1033" Version="1.0.1" Manufacturer="Maximilian Hänel" Codepage="1252" UpgradeCode="025ee4c3-f9a9-46fb-bb83-4f82b4f04835">
     
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
@@ -23,8 +16,8 @@
 
 	<Fragment>
 
-    <Icon Id="Setup.ico" SourceFile="Icons\Setup.ico"/>
-    <Property Id="ARPPRODUCTICON"  Value="Setup.ico" />
+    <Icon Id="Setup.ico" SourceFile="Icons\Setup.ico" />
+    <Property Id="ARPPRODUCTICON" Value="Setup.ico" />
     <Property Id="ARPURLINFOABOUT" Value="https://github.com/IInspectable" />
     
     <Condition Message="This product requires Visual Studio 2015 or 2017.">VS2015DEVENV OR VS2017DEVENV</Condition>
@@ -35,8 +28,8 @@
 			</Directory>
 		</Directory>
     
-    <PropertyRef Id="VS2015DEVENV"/>
-    <PropertyRef Id="VS2017DEVENV"/>
+    <PropertyRef Id="VS2015DEVENV" />
+    <PropertyRef Id="VS2017DEVENV" />
 
     <CustomAction Id="VS2015DevEnv" Property="DEVENV" Value="[VS2015DEVENV]" Execute="immediate" />
     <CustomAction Id="VS2015ProgId" Property="DEVPROGID" Value="VisualStudio.14.0" Execute="immediate" />
@@ -63,7 +56,7 @@
 
         <RegistryKey Id="Reg.Extn.Nav" Root="HKCR" Key=".nav" ForceCreateOnInstall="yes">
           <RegistryValue Id="Reg.Extn.Nav.Value" Value="VisualStudio.nav" Type="string" />
-          <RegistryValue Id="Reg.Extn.Nav.ContentType" Name="Content Type"  Value="text/plain" Type="string" />
+          <RegistryValue Id="Reg.Extn.Nav.ContentType" Name="Content Type" Value="text/plain" Type="string" />
         </RegistryKey>
                          
         <RegistryKey Id="Reg.Class.Nav" Root="HKCR" Key="VisualStudio.nav" ForceCreateOnInstall="yes">
@@ -97,7 +90,7 @@
 
         <RegistryKey Id="Reg.Extn.Pos" Root="HKCR" Key=".pos" ForceCreateOnInstall="yes">
           <RegistryValue Id="Reg.Extn.Pos.Value" Value="VisualStudio.pos" Type="string" />
-          <RegistryValue Id="Reg.Extn.Pos.ContentType" Name="Content Type"  Value="text/plain" Type="string" />
+          <RegistryValue Id="Reg.Extn.Pos.ContentType" Name="Content Type" Value="text/plain" Type="string" />
         </RegistryKey>
 
         <RegistryKey Id="Reg.ClassPos" Root="HKCR" Key="VisualStudio.pos" ForceCreateOnInstall="yes">
@@ -128,7 +121,7 @@
 
         <RegistryKey Id="Reg.Extn.Gd" Root="HKCR" Key=".gd" ForceCreateOnInstall="yes">
           <RegistryValue Id="Reg.Extn.Gd.Value" Value="VisualStudio.gd" Type="string" />
-          <RegistryValue Id="Reg.Extn.Gd.ContentType" Name="Content Type"  Value="text/plain" Type="string" />
+          <RegistryValue Id="Reg.Extn.Gd.ContentType" Name="Content Type" Value="text/plain" Type="string" />
         </RegistryKey>
         
         <RegistryKey Id="Reg.ClassGd" Root="HKCR" Key="VisualStudio.gd" ForceCreateOnInstall="yes">
