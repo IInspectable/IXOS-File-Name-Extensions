@@ -1,0 +1,9 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Debug
+platform: Any CPU
+build:
+  verbosity: minimal
+artifacts:
+- path: IXOS File Name Extensions\bin\Debug\IXOS File Name Extensions.msi
+  name: IXOS File Name Extensions
