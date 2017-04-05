@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:VSExtension="http://schemas.microsoft.com/wix/VSExtension">
   
-	<Product Id="db8281c4-cf15-469a-891f-fbb8a793d5e6" Name="IXOS File Name Extensions" Language="1033" Version="1.0.1" Manufacturer="Maximilian Hänel" Codepage="1252" UpgradeCode="025ee4c3-f9a9-46fb-bb83-4f82b4f04835">
+	<Product Id="c320353c-c5ea-4651-9861-a641b2459b00" Name="IXOS File Name Extensions" Language="1033" Version="1.0.3" Manufacturer="Maximilian Hänel" Codepage="1252" UpgradeCode="025ee4c3-f9a9-46fb-bb83-4f82b4f04835">
     
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
@@ -145,7 +145,69 @@
           </RegistryKey>
         </RegistryKey>
       </Component>
-      
-		</ComponentGroup>
-	</Fragment>
+
+      <!-- Dep File-->
+      <Component Id="FileTypes.Dep" Guid="0595ea25-72b0-43fb-afb8-86e4c68d775e">
+        <File Id="DependencyRules.ico" Name="DependencyRules.ico" Source="Icons\DependencyRules.ico" />
+
+        <RegistryKey Id="Reg.Extn.Dep" Root="HKCR" Key=".dep" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.Extn.Dep.Value" Value="VisualStudio.dep" Type="string" />
+          <RegistryValue Id="Reg.Extn.Dep.ContentType" Name="Content Type" Value="text/plain" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Id="Reg.ClassDep" Root="HKCR" Key="VisualStudio.dep" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.ClassDep.Value" Value="Dependency Rules" Type="string" />
+          <RegistryValue Id="Reg.ClassDep.Icon" Key="DefaultIcon" Value="[#DependencyRules.ico]" Type="string" />
+          <RegistryKey Id="Reg.ClassDep.Shell" Key="Shell" ForceCreateOnInstall="yes">
+            <RegistryKey Id="Reg.ClassDep.Shell.Open" Key="Open" ForceCreateOnInstall="yes">
+              <RegistryKey Id="Reg.ClassDep.Shell.Open.Command" Key="Command" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.ClassDep.Shell.Open.Command.Value" Value="[DEVENV] /dde &quot;%1&quot;" Type="string" />
+              </RegistryKey>
+              <RegistryKey Id="Reg.ClassDep.Shell.Open.ddeexec" Key="ddeexec" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.ClassDep.Shell.Open.ddeexec.Value" Value="Open(&quot;%1&quot;)" Type="string" />
+                <RegistryKey Id="Reg.ClassDep.Shell.Open.ddeexec.Application" Key="Application" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.ClassDep.Shell.Open.ddeexec.Application.Value" Value="[DEVPROGID]" Type="string" />
+                </RegistryKey>
+                <RegistryKey Id="Reg.ClassDep.Shell.Open.ddeexec.Topic" Key="Topic" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.ClassDep.Shell.Open.ddeexec.Topic.Value" Value="system" Type="string" />
+                </RegistryKey>
+              </RegistryKey>
+            </RegistryKey>
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+
+      <!-- Abfrage File-->
+      <Component Id="FileTypes.Abfrage" Guid="abc54535-1736-4c6d-85df-413acd102364">
+        <File Id="ReportsQuery.ico" Name="ReportsQuery.ico" Source="Icons\ReportsQuery.ico" />
+
+        <RegistryKey Id="Reg.Extn.Abfrage" Root="HKCR" Key=".abfrage" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.Extn.Abfrage.Value" Value="VisualStudio.abfrage" Type="string" />
+          <RegistryValue Id="Reg.Extn.Abfrage.ContentType" Name="Content Type" Value="text/plain" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Id="Reg.ClassAbfrage" Root="HKCR" Key="VisualStudio.abfrage" ForceCreateOnInstall="yes">
+          <RegistryValue Id="Reg.ClassAbfrage.Value" Value="Reports Query" Type="string" />
+          <RegistryValue Id="Reg.ClassAbfrage.Icon" Key="DefaultIcon" Value="[#ReportsQuery.ico]" Type="string" />
+          <RegistryKey Id="Reg.ClassAbfrage.Shell" Key="Shell" ForceCreateOnInstall="yes">
+            <RegistryKey Id="Reg.ClassAbfrage.Shell.Open" Key="Open" ForceCreateOnInstall="yes">
+              <RegistryKey Id="Reg.ClassAbfrage.Shell.Open.Command" Key="Command" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.ClassAbfrage.Shell.Open.Command.Value" Value="[DEVENV] /dde &quot;%1&quot;" Type="string" />
+              </RegistryKey>
+              <RegistryKey Id="Reg.ClassAbfrage.Shell.Open.ddeexec" Key="ddeexec" ForceCreateOnInstall="yes">
+                <RegistryValue Id="Reg.ClassAbfrage.Shell.Open.ddeexec.Value" Value="Open(&quot;%1&quot;)" Type="string" />
+                <RegistryKey Id="Reg.ClassAbfrage.Shell.Open.ddeexec.Application" Key="Application" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.ClassAbfrage.Shell.Open.ddeexec.Application.Value" Value="[DEVPROGID]" Type="string" />
+                </RegistryKey>
+                <RegistryKey Id="Reg.ClassAbfrage.Shell.Open.ddeexec.Topic" Key="Topic" ForceCreateOnInstall="yes">
+                  <RegistryValue Id="Reg.ClassAbfrage.Shell.Open.ddeexec.Topic.Value" Value="system" Type="string" />
+                </RegistryKey>
+              </RegistryKey>
+            </RegistryKey>
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+
+    </ComponentGroup>
+  </Fragment>
 </Wix>

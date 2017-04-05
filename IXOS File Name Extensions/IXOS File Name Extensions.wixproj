@@ -27,8 +27,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeGen.ps1" />
+    <Content Include="Icons\DependencyRules.ico" />
     <Content Include="Icons\GuiDefinition.ico" />
     <Content Include="Icons\PosTemplate.ico" />
+    <Content Include="Icons\ReportsQuery.ico" />
     <Content Include="Icons\Setup.ico" />
     <Content Include="Icons\WorkflowDefinition.ico" />
   </ItemGroup>

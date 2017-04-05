@@ -3,10 +3,20 @@
 #$iconFile      = 'GuiDefinition.ico'
 #$description   ='GUI Definition'
 
-$extension     = 'pos'
-$extensionName = 'Pos'
-$iconFile      = 'PosTemplate.ico'
-$description   ='POS Template'
+#$extension     = 'pos'
+#$extensionName = 'Pos'
+#$iconFile      = 'PosTemplate.ico'
+#$description   ='POS Template'
+
+#$extension     = 'dep'
+#$extensionName = 'Dep'
+#$iconFile      = 'DependencyRules.ico'
+#$description   ='Dependency Rules'
+
+$extension     = 'abfrage'
+$extensionName = 'Abfrage'
+$iconFile      = 'ReportsQuery.ico'
+$description   ='Reports Query'
 
 $template='
     <!-- $extensionName File-->
