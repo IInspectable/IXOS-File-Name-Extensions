@@ -18,7 +18,7 @@
 
     <Icon Id="Setup.ico" SourceFile="Icons\Setup.ico" />
     <Property Id="ARPPRODUCTICON" Value="Setup.ico" />
-    <Property Id="ARPURLINFOABOUT" Value="https://github.com/IInspectable" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/IInspectable/IXOS-File-Name-Extensions" />
     
     <Condition Message="This product requires Visual Studio 2015 or 2017.">VS2015DEVENV OR VS2017DEVENV</Condition>
    
