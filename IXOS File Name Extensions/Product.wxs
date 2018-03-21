@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:VSExtension="http://schemas.microsoft.com/wix/VSExtension">
   
-	<Product Id="c320353c-c5ea-4651-9861-a641b2459b00" Name="IXOS File Name Extensions" Language="1033" Version="1.0.3" Manufacturer="Maximilian Hänel" Codepage="1252" UpgradeCode="025ee4c3-f9a9-46fb-bb83-4f82b4f04835">
+	<Product Id="3534b045-2e96-492d-b280-4d5f44c59d17" Name="IXOS File Name Extensions" Language="1033" Version="1.0.4" Manufacturer="Maximilian Hänel" Codepage="1252" UpgradeCode="025ee4c3-f9a9-46fb-bb83-4f82b4f04835">
     
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
@@ -208,6 +208,38 @@
         </RegistryKey>
       </Component>
 
-    </ComponentGroup>
+		  <!-- MRT File-->
+		  <Component Id="FileTypes.MRT" Guid="11d6ade4-b82e-40fa-8740-dbcd3eabd411">
+		    <File Id="StimulsoftReport.ico" Name="StimulsoftReport.ico" Source="Icons\StimulsoftReport.ico" />
+
+		    <RegistryKey Id="Reg.Extn.MRT" Root="HKCR" Key=".mrt" ForceCreateOnInstall="yes">
+		      <RegistryValue Id="Reg.Extn.MRT.Value" Value="VisualStudio.mrt" Type="string" />
+		      <RegistryValue Id="Reg.Extn.MRT.ContentType" Name="Content Type" Value="text/plain" Type="string" />
+		    </RegistryKey>
+
+		    <RegistryKey Id="Reg.ClassMRT" Root="HKCR" Key="VisualStudio.mrt" ForceCreateOnInstall="yes">
+		      <RegistryValue Id="Reg.ClassMRT.Value" Value="Stimulsoft-Report" Type="string" />
+		      <RegistryValue Id="Reg.ClassMRT.Icon" Key="DefaultIcon" Value="[#StimulsoftReport.ico]" Type="string" />
+		      <RegistryKey Id="Reg.ClassMRT.Shell" Key="Shell" ForceCreateOnInstall="yes">
+		        <RegistryKey Id="Reg.ClassMRT.Shell.Open" Key="Open" ForceCreateOnInstall="yes">
+		          <RegistryKey Id="Reg.ClassMRT.Shell.Open.Command" Key="Command" ForceCreateOnInstall="yes">
+		            <RegistryValue Id="Reg.ClassMRT.Shell.Open.Command.Value" Value="[DEVENV] /dde &quot;%1&quot;"
+		                           Type="string" />
+		          </RegistryKey>
+		          <RegistryKey Id="Reg.ClassMRT.Shell.Open.ddeexec" Key="ddeexec" ForceCreateOnInstall="yes">
+		            <RegistryValue Id="Reg.ClassMRT.Shell.Open.ddeexec.Value" Value="Open(&quot;%1&quot;)" Type="string" />
+		            <RegistryKey Id="Reg.ClassMRT.Shell.Open.ddeexec.Application" Key="Application"
+		                         ForceCreateOnInstall="yes">
+		              <RegistryValue Id="Reg.ClassMRT.Shell.Open.ddeexec.Application.Value" Value="[DEVPROGID]" Type="string" />
+		            </RegistryKey>
+		            <RegistryKey Id="Reg.ClassMRT.Shell.Open.ddeexec.Topic" Key="Topic" ForceCreateOnInstall="yes">
+		              <RegistryValue Id="Reg.ClassMRT.Shell.Open.ddeexec.Topic.Value" Value="system" Type="string" />
+		            </RegistryKey>
+		          </RegistryKey>
+		        </RegistryKey>
+		      </RegistryKey>
+		    </RegistryKey>
+		  </Component>
+		</ComponentGroup>
   </Fragment>
 </Wix>

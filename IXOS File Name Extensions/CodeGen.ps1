@@ -13,10 +13,15 @@
 #$iconFile      = 'DependencyRules.ico'
 #$description   ='Dependency Rules'
 
-$extension     = 'abfrage'
-$extensionName = 'Abfrage'
-$iconFile      = 'ReportsQuery.ico'
-$description   ='Reports Query'
+#$extension     = 'abfrage'
+#$extensionName = 'Abfrage'
+#$iconFile      = 'ReportsQuery.ico'
+#$description   ='Reports Query'
+
+$extension     = 'mrt'
+$extensionName = 'MRT'
+$iconFile      = 'StimulsoftReport.ico'
+$description   = 'Stimulsoft-Report'
 
 $template='
     <!-- $extensionName File-->
